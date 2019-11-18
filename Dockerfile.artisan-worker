@@ -1,12 +1,15 @@
-FROM algmprivsecops/laravel 
+FROM amazeeio/php:7.3-cli
 COPY lagoon/php-worker.ini /usr/local/etc/php/php.ini
+COPY lagoon/supervisord.conf /etc/ 
 COPY . /app
+COPY lagoon/laravel-worker.conf /etc/supervisor/conf.d/
+
 RUN composer install --no-dev --prefer-dist
-RUN yarn install
-RUN npm run dev
+
+RUN apk add --update supervisor && rm  -rf /tmp/* /var/cache/apk/*
 
 ENV APP_ENV=${LAGOON_ENVIRONMENT_TYPE}
 ENV WEBROOT=public
 ENV PAGER=less
 ENV PHP_MEMORY_LIMIT=8192M
-CMD ["/app/scripts/worker.sh"]
+CMD ["/usr/bin/supervisord"]
