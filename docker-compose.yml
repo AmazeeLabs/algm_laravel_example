@@ -6,8 +6,7 @@ x-lagoon-project:
 x-volumes:
   &default-volumes
     volumes:
-      - ${PWD}/composer.json:/app/composer.json:delegated
-      - ${PWD}/composer.lock:/app/composer.lock:delegated
+      - ./:/app:delegated
 
 x-environment:
   &default-environment

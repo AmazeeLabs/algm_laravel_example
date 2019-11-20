@@ -51,10 +51,10 @@
     "prefer-stable": true,
     "scripts": {
         "pre-install-cmd": [
-            "./build/pre_composer"
+            "./lagoon/pre_composer"
         ],
         "pre-update-cmd": [
-            "./build/pre_composer"
+            "./lagoon/pre_composer"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
